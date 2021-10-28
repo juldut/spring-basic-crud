@@ -1,9 +1,12 @@
-<label for="name">Name</label>
-<input type="text" th:field="*{name}" name="name" id="name" placeholder="Name" autofocus="true"> 
-<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> 
-<br/>
-
-<label for="email">Email</label> 
-<input type="text" th:field="*{email}" id="email" placeholder="Email"> 
-<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span> 
-<br/>
+<div class="row col-5">
+	<label for="name" class="form-label">Name</label>
+	<input type="text" class="form-control" th:field="*{name}" name="name" id="name" placeholder="Name" autofocus="true"> 
+	<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> 
+	<br/>
+</div>
+<div class="row col-5">
+	<label for="email" class="form-label">Email</label> 
+	<input type="text" class="form-control" th:field="*{email}" id="email" placeholder="Email"> 
+	<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span> 
+	<br/>
+</div>
