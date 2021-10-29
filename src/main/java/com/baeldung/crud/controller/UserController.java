@@ -1,5 +1,7 @@
 package com.baeldung.crud.controller;
 
+import java.text.SimpleDateFormat;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import com.baeldung.crud.repository.UserRepository;
 public class UserController {
 	@Autowired
 	UserRepository userRepository;
+	
+	SimpleDateFormat isoSdf = new SimpleDateFormat("yyyy-MM-dd");
 	
     @GetMapping("/signup")
     public String showSignUpForm(User user) {
@@ -46,6 +50,7 @@ public class UserController {
         
         model.addAttribute("user", user);
         return "update-user";
+        // TODO add simple jasper reports to print
     }
     
     @PostMapping("/update/{id}")
@@ -55,7 +60,6 @@ public class UserController {
             user.setId(id);
             return "update-user";
         }
-            
         userRepository.save(user);
         return "redirect:/index";
     }
@@ -67,4 +71,7 @@ public class UserController {
         userRepository.delete(user);
         return "redirect:/index";
     }
+    
+    // TODO search user
+    // @GetMapping("/search")
 }

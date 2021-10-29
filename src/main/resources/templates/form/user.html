@@ -10,3 +10,9 @@
 	<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span> 
 	<br/>
 </div>
+<div class="row col-5">
+	<label for="name" class="form-label">dob</label>
+	<input type="date" class="form-control" th:field="*{dob}" name="dob" id="dob" >
+	<span th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></span> 
+	<br/>
+</div>

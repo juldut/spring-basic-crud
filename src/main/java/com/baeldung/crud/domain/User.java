@@ -7,7 +7,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
+
+// TODO implement lombok project
+//import lombok.Data;
+//@Data 
 @Entity
 @Table(name="muser")
 public class User {
@@ -20,8 +26,8 @@ public class User {
     
     @NotBlank(message = "Email is mandatory")
     private String email;
-
-	public long getId() {
+    
+    public long getId() {
 		return id;
 	}
 
@@ -45,5 +51,15 @@ public class User {
 		this.email = email;
 	}
 
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dob;
 	
 }
