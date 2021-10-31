@@ -1,0 +1,54 @@
+<!DOCTYPE html >
+<html xmlns:th="https://www.thymeleaf.org/" layout:decorate="~{layouts/layout-utama}">
+<head>
+<meta charset="utf-8">
+<title>Search User</title>
+</head>
+<body>
+	<div class="col" layout:fragment="content">
+		<h2>
+			<!-- <span th:text="${q} ? 'Searching: ' + ${q} : 'Enter keyword' "></span> -->
+			<span th:if="${q == null}">Enter keyword</span>
+			<span th:unless="${q == null}"><span th:text="'Searching: ' + ${q}"></span></span>
+		</h2>
+		<form th:action="@{/search}" method="POST">
+			<div class="row">
+				<div class="col-2">
+					<label for="keyword" class="form-label">Keyword</label>
+				</div>			
+				<div class="col-5">
+					<input type="text" class="form-control" id="q" name='q' autofocus="true" th:value="${q}"/>
+				</div>
+				<div class="col-3">
+					<input type="text" class="form-control" id="str" name='str' placeholder="Second param example"/>
+				</div>
+				<div class="col-2">
+					<input type="submit" class="btn btn-primary" value="Search"/>
+				</div>			
+			</div>
+		</form>
+		<br/>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${users}">
+					<td th:text="${user.name}"></td>
+					<td th:text="${user.email}"></td>
+					<td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+					<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<p>
+			<a href="/signup">Add a new user</a>
+		</p>
+	</div>
+</body>
+</html>

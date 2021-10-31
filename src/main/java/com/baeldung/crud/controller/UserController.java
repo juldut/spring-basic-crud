@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -72,6 +73,17 @@ public class UserController {
         return "redirect:/index";
     }
     
-    // TODO search user
-    // @GetMapping("/search")
+    @GetMapping("/search")
+    public String searchUser(Model model) { 
+    	model.addAttribute("users", userRepository.findAll());
+        return "search";
+    }
+
+    @PostMapping("/search")
+    public String searchUserResult(Model model, @Param("q") String q, @Param("str") String str) {
+    	System.out.println("============== example of second parameter: " + str);
+    	model.addAttribute("q", q);
+        model.addAttribute("users", userRepository.contains(q));
+        return "search";
+    }
 }
